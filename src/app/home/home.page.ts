@@ -18,8 +18,9 @@ export class HomePage {
     private authService:AuthService,
     private router:Router,
 
-
-  ) {}
+  ) {
+    this.perfilService.getUserProfile().subscribe((data)=>{this.profile=data;})
+  }
   async logout(){
     await this.authService.logout();
     this.router.navigateByUrl('/', {replaceUrl:true});

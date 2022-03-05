@@ -27,7 +27,7 @@ export class PerfilService {
       await uploadString(storageRef, image.base64String,'base64' );
       const imageUrl = getDownloadURL(storageRef);
       const userDocumentRef = doc(this.firestore, `users/${user.uid}`);
-      setDoc(userDocumentRef, imageUrl);
+      await setDoc(userDocumentRef, imageUrl);
       return true;
     } catch (error) {
       return null;
