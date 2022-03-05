@@ -28,12 +28,33 @@ export class HomePage {
   }
 
   async changeImage(){
-    const img = Camera.getPhoto({
+    const img = await Camera.getPhoto({
       quality:90,
       allowEditing:false,
       resultType:CameraResultType.Base64,
       source: CameraSource.Photos,
-    })
+    });
+    
+    console.log(img);
+
+    if(img){
+      const loading = await this.loadingController.create();
+      await loading.present();
+
+      const result = await this.perfilService.uploadImage(img);
+      await loading.dismiss();
+
+      if(!result){
+        const alert = await this.alertController.create({
+          header: 'Failed',
+          message: 'Upload Failed', 
+          buttons:['Ok'],
+
+        });
+        await alert.present();
+      }
+
+    }
   }
 
 }

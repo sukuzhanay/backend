@@ -21,18 +21,17 @@ export class PerfilService {
 
   async uploadImage(image:Photo){
     const user = this.auth.currentUser;
-    const path = `uploas/${user.uid}/profile.png`
+    const path = `upload/${user.uid}/profile.png`;
     const storageRef = ref(this.storage, path);
     try {
       await uploadString(storageRef, image.base64String,'base64' );
-      const imageUrl = getDownloadURL(storageRef);
+      const imageUrl = await getDownloadURL(storageRef);
       const userDocumentRef = doc(this.firestore, `users/${user.uid}`);
-      await setDoc(userDocumentRef, imageUrl);
+      await setDoc(userDocumentRef, {imageUrl});
       return true;
     } catch (error) {
       return null;
     }
-
   }
 }
  
