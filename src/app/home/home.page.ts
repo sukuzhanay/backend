@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { AuthService } from '../servicios/auth.service';
 import { PerfilService } from '../servicios/perfil.service'
@@ -26,6 +27,13 @@ export class HomePage {
     this.router.navigateByUrl('/', {replaceUrl:true});
   }
 
-  async changeImage(){}
+  async changeImage(){
+    const img = Camera.getPhoto({
+      quality:90,
+      allowEditing:false,
+      resultType:CameraResultType.Base64,
+      source: CameraSource.Photos,
+    })
+  }
 
 }

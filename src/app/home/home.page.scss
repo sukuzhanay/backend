@@ -1,3 +1,23 @@
+ion-avatar{
+  width: 150px;
+  height: 150px;
+}
+.preview{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+.fail{
+  width: 150px;
+  height: 150px;
+  border-radius: 40%;
+  background: #d3d0d0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+}
 #container {
   text-align: center;
 
@@ -25,3 +45,4 @@
 #container a {
   text-decoration: none;
 }
+
